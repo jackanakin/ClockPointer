@@ -1,15 +1,15 @@
 import React, { useRef, useState } from 'react';
-import { Image, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
     Container,
     FormInput,
     Form,
-    SubmitButton,
+    SubmitButton, MyLoginBackground, SignLink, SignLinkText
 } from './styles';
 
-import { MyLoginBackground } from './styles';
-//import { signInRequest } from '../../store/modules/auth/actions';
+import { signInRequest } from '../../store/modules/auth/actions';
 
 export default function SignIn({ navigation }) {
     const [user, setUser] = useState();
@@ -39,7 +39,6 @@ export default function SignIn({ navigation }) {
                             onSubmitEditing={() => passwordRef.current.focus()}
                         />
                     </TouchableOpacity>
-
                     <TouchableOpacity>
                         <FormInput
                             icon="lock-outline"
@@ -54,6 +53,9 @@ export default function SignIn({ navigation }) {
                     </TouchableOpacity>
 
                     <SubmitButton loading={loading} onPress={handleSubmit}>Acessar</SubmitButton>
+                    <SignLink onPress={() => navigation.navigate('SignUp')}>
+                        <SignLinkText>Criar conta</SignLinkText>
+                    </SignLink>
                 </Form>
             </Container>
         </MyLoginBackground>
